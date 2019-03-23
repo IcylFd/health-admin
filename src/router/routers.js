@@ -464,6 +464,26 @@ export default [
     ]
   },
   {
+    path: '/prewarning',
+    name: 'prewarning',
+    meta: {
+      hideInBread: true,
+      title: '用户预警信息'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'prewarning',
+        name: 'prewarning',
+        meta: {
+          icon: 'md-alert',
+          title: '用户预警信息'
+        },
+        component: () => import('@/view/prewarning/prewarning.vue')
+      }
+    ]
+  },
+  {
     path: '/admin-page',
     name: 'admin-page',
     meta: {
@@ -500,26 +520,6 @@ export default [
           title: '添加管理员'
         },
         component: () => import('@/view/add-admin/add-admin.vue')
-      }
-    ]
-  },
-  {
-    path: '/prewarning',
-    name: 'prewarning',
-    meta: {
-      hideInBread: true,
-      title: '用户预警信息'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'prewarning',
-        name: 'prewarning',
-        meta: {
-          icon: 'md-alert',
-          title: '用户预警信息'
-        },
-        component: () => import('@/view/prewarning/prewarning.vue')
       }
     ]
   },

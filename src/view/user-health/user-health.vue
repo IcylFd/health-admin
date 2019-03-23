@@ -13,9 +13,9 @@
       </div>
       <div class="user-info">
         <div v-if="user_msg.warning">
-          <p><Icon type="ios-navigate-outline" size="20" color="#c23531"/>预警位置信息：</p>
-          <p><Icon type="ios-clock-outline" size="20" color="#c23531"/>预警时间：</p>
-          <p><Icon type="ios-create-outline" size="20" color="#c23531"/>预警信息内容：</p>
+          <p><Icon type="ios-navigate-outline" size="20" color="#c23531"/>预警位置信息：{{user_msg.warning_pos}}</p>
+          <p><Icon type="ios-clock-outline" size="20" color="#c23531"/>预警时间：{{user_msg.warning_time}}</p>
+          <p><Icon type="ios-create-outline" size="20" color="#c23531"/>预警信息内容：{{user_msg.warning_msg}}</p>
         </div>
         <div v-else>
           <p style="color: #2d8cf0">该用户暂无预警信息</p>

@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Tables from '_c/tables'
 import { getTableData } from '@/api/data'
 export default {
@@ -71,44 +72,15 @@ export default {
         name: 'user_health',
         params: params,
       });
+    },
+    getUserData () {
+      axios.get("https://api.myjson.com/bins/rr166").then(res => {
+          this.tableData = res.data;
+      });
     }
-
   },
   mounted () {
-    getTableData().then(res => {
-      res.data = [
-        {
-          'id': '1',
-          'name': '王小明',
-          'sex': '男',
-          'phone': '18888888888',
-          'birthday': '1998-09-23',
-          'height': '180',
-          'weight': '60',
-          'blood': 'A',
-          'contact_name': '李大明',
-          'contact_num': '17777777777',
-          'warning': true,
-          'warning_msg': 'aaaaaaa'
-        },
-        {
-          'id': '2',
-          'name': '王小兰',
-          'sex': '女',
-          'phone': '18888888888',
-          'birthday': '1998-09-23',
-          'height': '180',
-          'weight': '60',
-          'blood': 'A',
-          'contact_name': '王小红',
-          'contact_num': '17777777777',
-          'warning': false,
-          'warning_msg': ''
-        }
-      ];
-      this.tableData = res.data;
-      
-    })
+    this.getUserData();
   }
 }
 </script>
