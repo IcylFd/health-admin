@@ -517,40 +517,10 @@ export default [
         name: 'add_admin',
         meta: {
           icon: 'md-add-circle',
-          title: '添加管理员'
+          title: '添加管理员',
+          access: ['admin']
         },
         component: () => import('@/view/add-admin/add-admin.vue')
-      }
-    ]
-  },
-  {
-    path: '/argu',
-    name: 'argu',
-    meta: {
-      hideInMenu: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'params/:id',
-        name: 'params',
-        meta: {
-          icon: 'md-flower',
-          title: route => `{{ params }}-${route.params.id}`,
-          notCache: true,
-          beforeCloseName: 'before_close_normal'
-        },
-        component: () => import('@/view/argu-page/params.vue')
-      },
-      {
-        path: 'query',
-        name: 'query',
-        meta: {
-          icon: 'md-flower',
-          title: route => `{{ query }}-${route.query.id}`,
-          notCache: true
-        },
-        component: () => import('@/view/argu-page/query.vue')
       }
     ]
   },

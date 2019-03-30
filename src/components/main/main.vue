@@ -16,13 +16,13 @@
           <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
         </header-bar>
       </Header>
+      <h2 class="co_name">
+          出租车公司
+      </h2>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
-          <div class="tag-nav-wrapper">
-            <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
-          </div>
           <Content class="content-wrapper">
-            <keep-alive :include="cacheList">
+            <keep-alive>
               <router-view/>
             </keep-alive>
             <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
@@ -35,22 +35,20 @@
 <script>
 import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
-import TagsNav from './components/tags-nav'
 import User from './components/user'
 import ABackTop from './components/a-back-top'
 import Fullscreen from './components/fullscreen'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
-import minLogo from '@/assets/images/logo-min.jpg'
-import maxLogo from '@/assets/images/logo.jpg'
+import minLogo from '@/assets/images/logo.png'
+import maxLogo from '@/assets/images/logo.png'
 import './main.less'
 export default {
   name: 'Main',
   components: {
     SideMenu,
     HeaderBar,
-    TagsNav,
     Fullscreen,
     User,
     ABackTop
@@ -67,9 +65,7 @@ export default {
     ...mapGetters([
       'errorCount'
     ]),
-    tagNavList () {
-      return this.$store.state.app.tagNavList
-    },
+    
     tagRouter () {
       return this.$store.state.app.tagRouter
     },
@@ -96,7 +92,6 @@ export default {
   methods: {
     ...mapMutations([
       'setBreadCrumb',
-      'setTagNavList',
       'addTag',
       'setLocal',
       'setHomeRoute',
@@ -127,18 +122,6 @@ export default {
     handleCollapsedChange (state) {
       this.collapsed = state
     },
-    handleCloseTag (res, type, route) {
-      if (type !== 'others') {
-        if (type === 'all') {
-          this.turnToPage(this.$config.homeName)
-        } else {
-          if (routeEqual(this.$route, route)) {
-            this.closeTag(route)
-          }
-        }
-      }
-      this.setTagNavList(res)
-    },
     handleClick (item) {
       this.turnToPage(item)
     }
@@ -151,15 +134,14 @@ export default {
         type: 'push'
       })
       this.setBreadCrumb(newRoute)
-      this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
       this.$refs.sideMenu.updateOpenName(newRoute.name)
     }
   },
   mounted () {
     /**
-     * @description 初始化设置面包屑导航和标签导航
+     * @description 初始化设置面包屑导航
+     * 
      */
-    this.setTagNavList()
     this.setHomeRoute(routers)
     this.addTag({
       route: this.$store.state.app.homeRoute
@@ -167,14 +149,16 @@ export default {
     this.setBreadCrumb(this.$route)
     // 设置初始语言
     this.setLocal(this.$i18n.locale)
-    // 如果当前打开页面不在标签栏中，跳到homeName页
-    if (!this.tagNavList.find(item => item.name === this.$route.name)) {
-      this.$router.push({
-        name: this.$config.homeName
-      })
-    }
     // 获取未读消息条数
     this.getUnreadMessageCount()
   }
 }
 </script>
+<style lang="less" scoped>
+  .main{
+    .co_name{
+      margin: 20px 0 0 20px;
+      font-size: 22px;
+    }
+  }
+</style>

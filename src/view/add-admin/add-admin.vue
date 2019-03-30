@@ -21,9 +21,9 @@
         </FormItem>
         <FormItem label="部门" prop="department">
             <Select v-model="formItem.department">
-                <Option value="技术部"></Option>
-                <Option value="法务部"></Option>
-                <Option value="人事部"></Option>
+                <Option value="技术部">技术部</Option>
+                <Option value="法务部">法务部</Option>
+                <Option value="人事部">人事部</Option>
             </Select>
         </FormItem>
         <FormItem label="是否为超级管理员">
