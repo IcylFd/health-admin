@@ -444,7 +444,7 @@ export default [
     ]
   },
   {
-    path: '/user-health',
+    path: '/user-health/:id',
     name: 'user-health',
     meta: {
       hideInMenu: true,

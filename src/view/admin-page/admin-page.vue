@@ -60,9 +60,13 @@ export default {
   },
   methods: {
     handleDelete (params) {
+      console.log('delete');
     },
     handleClick (params) {
     
+    },
+    fetchData () {
+      
     }
 
   },

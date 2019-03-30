@@ -25,6 +25,9 @@ export default {
           title: 'Handle',
           key: 'handle',
           options: ['delete'],
+          handleDelete (params) {
+            console.log(params)
+          },
           button: [
             (h, params, vm) => {
               return h('Poptip', {

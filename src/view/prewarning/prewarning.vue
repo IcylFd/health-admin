@@ -75,11 +75,13 @@ export default {
       text-align: center;
     }
     .ivu-btn-ghost{
-      z-index: 999;
       outline-style: none;
     }
     .ivu-poptip-body{
       text-align: left; 
+    }
+    .ivu-table-row:first-child{
+      background: red !important;
     }
   }
 </style>
